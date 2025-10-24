@@ -1501,9 +1501,9 @@
         "operation": "analyze",
         "modelId": {
           "__rl": true,
-          "value": "gpt-4o-mini",
+          "value": "gpt-4o",
           "mode": "list",
-          "cachedResultName": "GPT-4O-MINI"
+          "cachedResultName": "GPT-4O"
         },
         "text": "Analise a imagem e me traga um resumo simples e o mais curto possível do que ela é",
         "inputType": "base64",
@@ -1811,9 +1811,9 @@
       "parameters": {
         "model": {
           "__rl": true,
-          "value": "gpt-4o-mini",
+          "value": "gpt-4o",
           "mode": "list",
-          "cachedResultName": "gpt-4o-mini"
+          "cachedResultName": "gpt-4o"
         },
         "options": {}
       },
@@ -3008,6 +3008,47 @@
       ],
       "id": "b35c3f0d-eb0b-41d9-a4b1-3cbf41fbc6c7",
       "name": "Pausar IA1"
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list"
+        },
+        "table": {
+          "__rl": true,
+          "value": "conversation_history",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone_number": "={{ $('Dados').item.json.Telefone }}",
+            "user_message": "={{ $('Dados').item.json.message.content }}",
+            "bot_response": "={{ $json.output }}",
+            "message_type": "={{ $('Dados').item.json.message.content_type }}",
+            "timestamp": "={{ $now }}",
+            "session_id": "={{ $('Dados').item.json.Telefone }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "a8f9c3d1-2e4f-5a6b-7c8d-9e0f1a2b3c4d",
+      "name": "Salvar Conversa PostgreSQL",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        3632,
+        2880
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "postgres_credential",
+          "name": "PostgreSQL Conversas"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -3099,6 +3140,11 @@
           },
           {
             "node": "Busca Telefone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Salvar Conversa PostgreSQL",
             "type": "main",
             "index": 0
           }
