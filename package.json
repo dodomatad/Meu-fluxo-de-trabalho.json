@@ -1,0 +1,24 @@
+{
+  "name": "n8n-workflow-importer",
+  "version": "1.0.0",
+  "description": "Importador automático de workflows n8n usando Puppeteer",
+  "main": "import_with_puppeteer.js",
+  "scripts": {
+    "import": "node import_with_puppeteer.js",
+    "install-deps": "npm install",
+    "setup": "node setup_credentials.js"
+  },
+  "keywords": [
+    "n8n",
+    "workflow",
+    "automation",
+    "puppeteer"
+  ],
+  "author": "Claude Code",
+  "license": "MIT",
+  "dependencies": {
+    "puppeteer": "^21.5.0",
+    "dotenv": "^16.3.1",
+    "chalk": "^4.1.2"
+  }
+}
